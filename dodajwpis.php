@@ -5,10 +5,9 @@
     
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Dodawanie wpisu</title>
-    <?php include 'js/style.php';?>
+    <?php include 'style.php';?>
     <script src="js/data.js" type="text/javascript"></script>
-    <script src="js/style.js" type="text/javascript"></script>  
-    
+    <script src="js/style.js" type="text/javascript"></script> 
     <script src="js/pliki.js" type="text/javascript"></script>
 
 </head>

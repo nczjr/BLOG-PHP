@@ -1,4 +1,4 @@
-<?php require 'menu.php'; include 'js/style.php'?>
+<?php require 'menu.php'; ?>
 <?php
 
     if(isset($_POST['submit']) && !empty($_POST['blogname']) && !empty($_POST['username']) && !empty($_POST['password'])){

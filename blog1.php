@@ -6,13 +6,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="stylesheet" type="text/css" href="szablon.css">
 	<title>Zakładanie bloga</title>
-    <?php include 'js/style.php'?>
-    <script src="js/style.js" type="text/javascript"></script>
-    <script src="js/data.js" type="text/javascript"></script>
-    <script src="js/pliki.js" type="text/javascript"></script>
 </head>
 <body>
-<?php require 'menu.php';?>
+<?php include 'menu.php';?>
 	<form action="nowy.php" method="post">
 		Nazwa bloga:<br />
 		<input type="text" name="blogname"/><br />

@@ -3,8 +3,7 @@
 <head>
 	<title>Przeglądanie bloga</title>
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-	<?php include 'style.php'?>
-	<script src="js/style.js" type="text/javascript"></script>
+
 </head>
 <body>
     <?php

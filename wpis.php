@@ -1,4 +1,4 @@
-<?php require 'menu.php'; include 'js/style.php'?>
+<?php require 'menu.php'; ?>
 <?php
 
     $dir = glob('*', GLOB_ONLYDIR);

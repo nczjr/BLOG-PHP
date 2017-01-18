@@ -3,11 +3,12 @@
 <head>
 	<title>Przeglądanie bloga</title>
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+	<?php include 'js/style.php'?>
+	<script src="js/style.js" type="text/javascript"></script>
 </head>
 <body>
-<?php require 'menu.php';?>
 <?php
-    
+include 'menu.php';
     
 define("blog", $_GET["nazwa"]);
 
@@ -23,15 +24,15 @@ define("blog", $_GET["nazwa"]);
     
     } else { 
         //$blog = htmlspecialchars($_GET["nazwa"]);
-        echo "<h1>Blog ".blog." <br/></h1>";
-        $file = fopen(blog.'/info.txt','r') or die("Błąd przy otwieraniu");
-        $arr = file(blog.'/info.txt');
+        echo "<h1>".blog." <br/></h1>";
+        $file = fopen(blog.'/info','r') or die("Błąd przy otwieraniu");
+        $arr = file(blog.'/info');
         fclose($file);
-        echo "<h2>Opis: " . $arr[2] . "<br \></h2>" ;
+        echo "<h3>" . $arr[2] . "<br \></h3>" ;
         
         $files = array_filter(glob(blog.'/*'), 'is_file'); // tablica zawierajaca tylko pliki
         echo '<br \>';
-        $entries = array_diff($files, array(blog.'/info.txt')); // Usuniecie pliku info z tablicy plikow
+        $entries = array_diff($files, array(blog.'/info')); // Usuniecie pliku info z tablicy plikow
         arsort($entries); 
         
         foreach ($entries as $entry){
@@ -58,30 +59,31 @@ define("blog", $_GET["nazwa"]);
     
         function showArticle($filename){
             $date = substr($filename,0,4) .'.'. substr($filename,4,2) .'.'. substr($filename,6,2) .' ' .  substr($filename,8,2) .':'. substr($filename,10,2) .':'. substr($filename,12,2);
-            $toOpen = blog. "/" . $filename . ".txt";
+            $toOpen = blog. "/" . $filename;
             $fileHandler = fopen($toOpen,'r') or die("Błąd przy otwieraniu");
-            echo "<h3>Data dodania: " .$date . "<br/></h2>";
+            echo "<div id='article' style>";
+            echo "<h2>Data dodania: " .$date . "<br/></h2>";
             echo "<p>";
             while(!feof($fileHandler)) {
                 echo fgets($fileHandler) . "<br/>";
             }
-            echo "</p>";
+            echo "</p></div>";
         }
         
         function showAttachments($filename){
-            echo "<p>";
+            echo "<br/>";
             $files = scandir(blog."/");
             foreach ($files as $file) {
                 
-                if (substr($file, 0, 16) == $filename &&  ( $file != $filename . '.txt' ) && $file != $filename.".k") {
+                if (substr($file, 0, 16) == $filename &&   $file != $filename   && $file != $filename.".k") {
                     echo "<a href='".blog."/".$file."'>$file</a><br>";
                 }
             }
-            echo "</p>";
+            echo "<br/>";
         }
         
         function showComments($filename){
-             echo "<p>";
+             echo "<br/>";
              $comments_dir = blog . "/" . $filename . ".k";
              if(is_dir($comments_dir)) {
                 $files = scandir($comments_dir);
@@ -94,19 +96,20 @@ define("blog", $_GET["nazwa"]);
                         $comment = fgets($commentfile);
                         fclose($commentfile);
                         echo "
-                        Czas: " . $datetime . "<br>
+                        Czas dodania: " . $datetime . "<br>
                         Typ: " . $commenttype . "<br>
-                        Nazwa: " . $username . "<br>
+                        Autor: " . $username . "<br>
                         Komentarz: " . $comment . "<br>";
                     }
                 }
     
             }    
+            echo "<br/>";
             echo '<form action="dodajkom.php" method="post">' .
                       '<input type="hidden" name="blogname" value="' . blog . '">' .
                       '<input type="hidden" name="articlename" value="' . $filename . '">' .
                       '<input type="submit" name="submit" value="Skomentuj"></form>';        
-            echo "</p>";
+            echo "<br/>";
         }   
 
 

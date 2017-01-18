@@ -6,18 +6,29 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Załóż bloga</title>
+  <title>Menu</title>
+  <?php include 'js/style.php'?>
+<!--
+  <script src="js/style.js" type="text/javascript"></script>
+  <script src="js/data.js" type="text/javascript"></script>
+  <script src="js/pliki.js" type="text/javascript"></script>
+-->
 </head>
 
 <body>
-  
-  <table  style="border: 1px solid black">
+  <div id="styles">
+
+  </div>
+  <table  id="tab" style="border: 1px solid black">
   <tr>
     <td style="padding: 10px "><a href="blog1.php">Stwórz nowego bloga</a></td>
     <td style="padding: 10px "><a href="dodajwpis.php">Dodaj wpis na bloga</a></td>
     <td style="padding: 10px "><a href="blog.php">Pokaż listę blogów</a></td>
   </tr>
   </table>
+  
+      
+  </div>
   
   <br />
   <br />

@@ -1,4 +1,4 @@
-<?php require 'menu.php';?>
+<?php require 'menu.php'; include 'js/style.php'?>
 <?php
 
     $dir = glob('*', GLOB_ONLYDIR);
@@ -25,11 +25,14 @@
     else {
         if (trim($foundBlog[1]) != md5($_POST['password'])){
 
-            echo "Błędne hasło";
+            echo "Błędne hasło. <br/>";
         }
         else {
-            
-            $fileName = str_replace('-', "", $_POST['date']) . str_replace(':', "", $_POST['time']) . date('s');
+            if(!empty($_POST['date']) && !empty($_POST['time'])){
+                $fileName = str_replace('-', "", $_POST['date']) . str_replace(':', "", $_POST['time']) . date('s');
+            }else{
+                $fileName = date("Ymd").date("his");
+            }
             $pattern = './' . $found_blog[3] . '/' . $fileName . '*';
             $addedNotes = glob($pattern);
             $uniqueNum = 0;
@@ -42,6 +45,7 @@
             $file = fopen($foundBlog[3] . '/' . $fileName , 'w') or die("Błąd przy tworzeniu pliku");
             fwrite($file,$_POST['content']);
             fclose($file);
+            echo 'Wpis został dodany. <br/>';
             
             
             for($i=1;$i<=3;$i++){
@@ -49,15 +53,15 @@
                 if (is_uploaded_file($_FILES[$fileToUpload]['tmp_name']) && file_exists($_FILES[$fileToUpload]['tmp_name'])) {
                     $orginalName = $_FILES[$fileToUpload]['name'];
                     $extension = pathinfo($orginalName, PATHINFO_EXTENSION);
-                    echo $i . ' rozszerzenie : ' . $extension . '<br \>' ;
+                   
                     if($extension != "jpg" && $extension != "png" && $extension != "jpeg" && $extension != "gif") {
-                        echo "Tylko rozszerzenia JPG, JPEG, PNG i GIF są dozwolone.";
+                        echo "Tylko rozszerzenia JPG, JPEG, PNG i GIF są dozwolone. <br/>";
                     }
                     else{
                         $finalDir = $foundBlog[3] . '/' . $foundBlog[4] . $i . '.' . $extension;
 
                         if(move_uploaded_file($_FILES[$fileToUpload]['tmp_name'], $finalDir)){
-                            echo "<br/> Plik ". basename( $_FILES[$fileToUpload]['name']). " został dodany<br>";
+                            echo "<br/> Plik ". basename( $_FILES[$fileToUpload]['name']). " został dodany. <br>";
                         }
                         else{
                             echo "Błąd podczas dodawania pliku. <br/>";

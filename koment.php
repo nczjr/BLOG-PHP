@@ -14,8 +14,6 @@ if(!empty($_POST['articlename'])){
         }
         
         $comments = $dirPattern . '/*';
-        $sem=sem_get(2);
-        sem_acquire($sem);
         $addedComments = glob($comments);
     
         if (empty($addedComments)){

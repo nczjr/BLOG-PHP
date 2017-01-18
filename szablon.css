@@ -1,0 +1,25 @@
+*{
+	font-family:sans-serif, helvetica;
+}
+
+p{	
+	text-indent:5px;
+}
+
+
+h1{
+    text-transform:uppercase;
+	letter-spacing:2px;
+    text-align: center;
+}
+h3{
+	
+}
+TABLE { 
+	background: white; 
+	border: solid black;
+
+}
+
+
+

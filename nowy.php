@@ -2,7 +2,7 @@
 <?php
 
     if(isset($_POST['submit']) && !empty($_POST['blogname']) && !empty($_POST['username']) && !empty($_POST['password'])){
-        define('SEM_KEY', 1000);
+        define('SEM_KEY', 1002);
         $filename='info';
 
         $semRes = sem_get(SEM_KEY, 1, 0666, 0);	

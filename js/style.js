@@ -1,13 +1,14 @@
 function showStyles(){
-    var list = ""; 
+    var list = "<ul>"; 
     var style;
 	for (var i = 0; (i < document.getElementsByTagName("link").length); i++) { 
 		style = document.getElementsByTagName("link")[i];
         if (style.getAttribute("title")) { 
 			title = style.getAttribute("title"); 
-			list += "<a href=\"#\" onclick=\"setStyle(\'" + title + "\'); return false;\">Zmień styl na " + title + "</a><br/>"; 
+			list += "<li><a href=\"#\" onclick=\"setStyle(\'" + title + "\'); return false;\">Zmień styl na " + title + "</a></li><br/>"; 
 		}
 	}
+    list += "</ul>";
 	document.getElementById("styles").innerHTML = list; 
 }
 
